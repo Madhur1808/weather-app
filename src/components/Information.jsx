@@ -57,7 +57,7 @@ const Information = ({ result }) => {
       </Row>
       <Row>
         <SettingsBrightness />
-        Temperature: {result.main.temp}
+        Temperature: {result.main.temp}&deg;C
       </Row>
       <Row>
         <Opacity />
@@ -73,7 +73,7 @@ const Information = ({ result }) => {
       </Row>
       <Row>
         <Dehaze />
-        Humidity: {result.weather[0].main}
+        Wind Speed: {result.wind.speed}
       </Row>
       <Row>
         <Cloud />

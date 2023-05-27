@@ -42,7 +42,7 @@ const GetButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: { size: "small", marginTop: "0px" },
   [theme.breakpoints.down("xs")]: { size: "small", marginTop: "20px" },
 }));
-const Form = ({ setResult }) => {
+const Form = ({ setResult, setIsLoading, isLoading }) => {
   const [data, setData] = useState({ city: "" });
 
   const handleChange = (e) => {
@@ -51,10 +51,10 @@ const Form = ({ setResult }) => {
     // console.log(data);
   };
   const getWeatherInfo = async () => {
+    setIsLoading(true);
     let response = await getWeather(data.city);
-    console.log(response);
-    // console.log(response.col);
     setResult(response);
+    setIsLoading(false);
   };
   return (
     <Container>

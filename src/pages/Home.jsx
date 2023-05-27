@@ -46,6 +46,7 @@ const Image = styled(Box)(({ theme }) => ({
 
 const Home = () => {
   const [result, setResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <Component>
       <Image></Image>
@@ -58,8 +59,12 @@ const Home = () => {
         }}
         sx={{ width: { md: "90%" } }}
       >
-        <Form setResult={setResult} />
-        <Information result={result} />
+        <Form
+          setResult={setResult}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
+        <Information result={result} isLoading={isLoading} />
       </Box>
     </Component>
   );

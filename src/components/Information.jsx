@@ -11,6 +11,8 @@ import {
   Cloud,
 } from "@mui/icons-material";
 
+import Spinner from "../components/Spinner";
+
 const Row = styled(Typography)(({ theme }) => ({
   padding: 10,
   fontSize: 20,
@@ -44,14 +46,13 @@ const Error = styled(Typography)({
   fontSize: 18,
 });
 
-const Information = ({ result }) => {
+const Information = ({ result, isLoading }) => {
   if (result && Object.keys(result).length > 0) {
     if (result.cod === 200) {
       return (
         <Box
           style={{
             margin: "60px 60px",
-
             textAlign: "center",
           }}
         >
@@ -89,6 +90,9 @@ const Information = ({ result }) => {
       return <Error>Oopss..City not found.Please try a valid city name </Error>;
     }
   } else {
+    if (isLoading) {
+      return <Spinner />;
+    }
     return <Error>Please enter city name to check weather of that city</Error>;
   }
 };

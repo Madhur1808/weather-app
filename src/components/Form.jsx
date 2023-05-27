@@ -44,13 +44,16 @@ const GetButton = styled(Button)(({ theme }) => ({
 }));
 const Form = ({ setResult }) => {
   const [data, setData] = useState({ city: "" });
+
   const handleChange = (e) => {
+    e.preventDefault();
     setData({ [e.target.name]: e.target.value });
-    console.log(data);
+    // console.log(data);
   };
   const getWeatherInfo = async () => {
     let response = await getWeather(data.city);
-    // console.log(response);
+    console.log(response);
+    // console.log(response.col);
     setResult(response);
   };
   return (

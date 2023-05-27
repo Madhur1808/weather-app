@@ -39,50 +39,58 @@ const Error = styled(Typography)({
   textAlign: "center",
   color: "red",
   margin: 50,
+  letterSpacing: 1.5,
   padding: 20,
+  fontSize: 18,
 });
 
 const Information = ({ result }) => {
-  return result && Object.keys(result).length > 0 ? (
-    <Box
-      style={{
-        margin: "60px 60px",
+  if (result && Object.keys(result).length > 0) {
+    if (result.cod === 200) {
+      return (
+        <Box
+          style={{
+            margin: "60px 60px",
 
-        textAlign: "center",
-      }}
-    >
-      <Row>
-        <LocationOn />
-        Location: {result.name}, {result.sys.country}
-      </Row>
-      <Row>
-        <SettingsBrightness />
-        Temperature: {result.main.temp}&deg;C
-      </Row>
-      <Row>
-        <Opacity />
-        Humidity: {result.main.humidity}
-      </Row>
-      <Row>
-        <Brightness5 />
-        Sun Rise: {new Date(result.sys.sunrise * 1000).toLocaleTimeString()}
-      </Row>
-      <Row>
-        <Brightness6 />
-        Sun Set: {new Date(result.sys.sunset * 1000).toLocaleTimeString()}
-      </Row>
-      <Row>
-        <Dehaze />
-        Wind Speed: {result.wind.speed}
-      </Row>
-      <Row>
-        <Cloud />
-        Clouds: {result.clouds.all}%
-      </Row>
-    </Box>
-  ) : (
-    <Error>Please enter city name to check weather of that city</Error>
-  );
+            textAlign: "center",
+          }}
+        >
+          <Row>
+            <LocationOn />
+            Location: {result.name}, {result.sys.country}
+          </Row>
+          <Row>
+            <SettingsBrightness />
+            Temperature: {result.main.temp}&deg;C
+          </Row>
+          <Row>
+            <Opacity />
+            Humidity: {result.main.humidity}
+          </Row>
+          <Row>
+            <Brightness5 />
+            Sun Rise: {new Date(result.sys.sunrise * 1000).toLocaleTimeString()}
+          </Row>
+          <Row>
+            <Brightness6 />
+            Sun Set: {new Date(result.sys.sunset * 1000).toLocaleTimeString()}
+          </Row>
+          <Row>
+            <Dehaze />
+            Wind Speed: {result.wind.speed}
+          </Row>
+          <Row>
+            <Cloud />
+            Clouds: {result.clouds.all}%
+          </Row>
+        </Box>
+      );
+    } else if (result.data.cod === "404") {
+      return <Error>Oopss..City not found.Please try a valid city name </Error>;
+    }
+  } else {
+    return <Error>Please enter city name to check weather of that city</Error>;
+  }
 };
 
 export default Information;

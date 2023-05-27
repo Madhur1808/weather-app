@@ -45,7 +45,7 @@ const Image = styled(Box)(({ theme }) => ({
 }));
 
 const Home = () => {
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState(null);
   return (
     <Component>
       <Image></Image>
